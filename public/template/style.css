@@ -1747,7 +1747,7 @@ a[data-toggle="collapse"] {
     min-width: 125px;
     height: auto;
     float: left;
-    background: #1ed085;
+    background: #014A5D;
     text-align: center;
     color: #fff;
     padding: 10px 25px;
@@ -1766,7 +1766,7 @@ button.main_bt {
 
 .main_bt:hover,
 .main_bt:focus {
-    background: #ff5722;
+    background: #30415F;
     color: #fff;
 }
 
