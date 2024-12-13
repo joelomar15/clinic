@@ -32,9 +32,9 @@ class LoginController extends BaseController
             if (password_verify($pass, $result['clave'])) {
                 // La contraseña es válida
                 $session = session();
-                $cabecera = ['correo' => $result['correo'], 'usuario' => $result['nombre']];
+                $cabecera = ['correo' => $result['correo'], 'usuario' => $result['nombre'], 'foto' => $result['foto']];
                 $session->set($cabecera);
-                return redirect()->to(base_url('/home'));
+                return redirect()->to(base_url('/ad/home'));
             } else {
                 // La contraseña es incorrecta
                 return redirect()->to(base_url('/login'))->with('error', 'Login incorrecto');

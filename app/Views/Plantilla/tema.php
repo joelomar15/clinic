@@ -1,195 +1,158 @@
 <!DOCTYPE html>
 <html>
+
 <head>
+  <!-- basic -->
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>AdminLTE 2 |  <?php  echo $titulo;?></title>
-  <!-- Tell the browser to be responsive to screen width -->
-  <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-  <!-- Bootstrap 3.3.7 -->
-  <link rel="stylesheet" href="<?= base_url() ?>template/bower_components/bootstrap/dist/css/bootstrap.min.css">
-  <!-- Font Awesome -->
-  <link rel="stylesheet" href="<?= base_url() ?>template/bower_components/font-awesome/css/font-awesome.min.css">
-  <!-- Ionicons -->
-  <link rel="stylesheet" href="<?= base_url() ?>template/bower_components/Ionicons/css/ionicons.min.css">
-
-  <!-- Theme style -->
-  <link rel="stylesheet" href="<?= base_url() ?>template/dist/css/AdminLTE.min.css">
-  <!-- AdminLTE Skins. Choose a skin from the css/skins
-       folder instead of downloading all of them to reduce the load. -->
-  <link rel="stylesheet" href="<?= base_url() ?>template/dist/css/skins/_all-skins.min.css">
-
-  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+  <!-- mobile metas -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+  <!-- site metas -->
+  <title>QP | <?php echo $titulo; ?></title>
+  <meta name="keywords" content="">
+  <meta name="description" content="">
+  <meta name="author" content="">
+  <!-- site icon -->
+  <link rel="icon" href="<?= base_url() ?>template/images/fevicon.png" type="image/png" />
+  <!-- bootstrap css -->
+  <link rel="stylesheet" href="<?= base_url() ?>template/css/bootstrap.min.css" />
+  <!-- site css -->
+  <link rel="stylesheet" href="<?= base_url() ?>template/style.css" />
+  <!-- responsive css -->
+  <link rel="stylesheet" href="<?= base_url() ?>template/css/responsive.css" />
+  <!-- color css -->
+  <link rel="stylesheet" href="<?= base_url() ?>template/css/colors.css" />
+  <!-- select bootstrap -->
+  <link rel="stylesheet" href="<?= base_url() ?>template/css/bootstrap-select.css" />
+  <!-- scrollbar css -->
+  <link rel="stylesheet" href="<?= base_url() ?>template/css/perfect-scrollbar.css" />
+  <!-- custom css -->
+  <link rel="stylesheet" href="<?= base_url() ?>template/css/custom.css" />
   <!--[if lt IE 9]>
-  <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-  <![endif]-->
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+      <![endif]-->
 
-  <!-- Google Font -->
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
 </head>
-<body class="hold-transition skin-blue sidebar-mini">
-<!-- Site wrapper -->
-<div class="wrapper">
-
-  <header class="main-header">
-    <!-- Logo -->
-    <a href="" class="logo">
-      <!-- logo for regular state and mobile devices -->
-      <span class="logo-lg"><b>Sistema</b> RR.HH</span>
-    </a>
-    <!-- Header Navbar: style can be found in header.less -->
-    <nav class="navbar navbar-static-top">
-     <!-- Sidebar toggle button-->
-      <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
-        <span class="sr-only">Toggle navigation</span>
-      </a>
-
-      <div class="navbar-custom-menu">
-        <ul class="nav navbar-nav">
-          <!-- User Account: style can be found in dropdown.less -->
-          <li class="dropdown user user-menu">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-              <img src="<?= base_url() ?>template/dist/img/user2-160x160.jpg" class="user-image" alt="User Image">
-              <span class="hidden-xs"> <?php  echo session('usuario');?></span>
-            </a>
-            <ul class="dropdown-menu">
-              <!-- User image -->
-              <li class="user-header">
-                <img src="<?= base_url() ?>template/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
-
-                <p>
-                <?php echo session('usuario');?> - Web Developer
-                  <small>Administrador</small>
-                </p>
-              </li>
-              <!-- Menu Footer-->
-              <li class="user-footer">
-                <div class="pull-right">
-                  <a href="<?= base_url() ?>/salir" class="btn btn-default btn-flat">Salir</a>
-                </div>
-              </li>
-            </ul>
-          </li>
-        </ul>
-      </div>
-    </nav>
-  </header>
-
-  <!-- =============================================== -->
-
-  <!-- Left side column. contains the sidebar -->
-  <aside class="main-sidebar">
-    <!-- sidebar: style can be found in sidebar.less -->
-    <section class="sidebar">
-      <!-- Sidebar user panel -->
-      <div class="user-panel">
-        <div class="pull-left image">
-          <img src="<?= base_url() ?>template/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
-        </div>
-        <div class="pull-left info">
-          <p> <?php  echo session('usuario');;?></p>
-          <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
-        </div>
-      </div>
-      <!-- sidebar menu: : style can be found in sidebar.less -->
-      <ul class="sidebar-menu" data-widget="tree">
-        <li class="header">MENÚ DE NAVEGACIÓN</li>
-        <li class="treeview">
-          <a href="#">
-            <i class="fa fa-dashboard"></i> <span>Tablas</span>
-            <span class="pull-right-container">
-              <i class="fa fa-angle-left pull-right"></i>
-            </span>
-          </a>
-          <ul class="treeview-menu">
-          <li><a href="<?= base_url()?>areas"><i class="fa fa-circle-o"></i> Areas</a></li>
-            <li><a href="<?= base_url()?>empleados"><i class="fa fa-circle-o"></i> Empleados</a></li>
-            <li><a href="<?= base_url()?>horasExtras"><i class="fa fa-circle-o"></i> Horas Extras</a></li>
-            <li><a href="<?= base_url()?>anticipos"><i class="fa fa-circle-o"></i> Anticipos</a></li>
-            <li><a href="<?= base_url()?>pagos"><i class="fa fa-circle-o"></i> Realizar Pagos</a></li>
-          </ul>
-        </li>
-
-        <li><a href="#"><i class="fa fa-book"></i> <span>Documentation</span></a></li>
-      </ul>
-    </section>
-    <!-- /.sidebar -->
-  </aside>
-
-  <!-- =============================================== -->
-
-  <!-- Content Wrapper. Contains page content -->
-  <div class="content-wrapper">
-    <!-- Content Header (Page header) -->
-    <section class="content-header">
-      <h1>
-      <?php  echo $titulo;?>
-        
-      </h1>
-      <ol class="breadcrumb">
-        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li><a href="#"><?php  echo $tipo;?></a></li>
-        <li class="active"> <?php  echo $titulo;?></li>
-      </ol>
-    </section>
-
-    <!-- Main content -->
-    <section class="content">
-
-      <!-- Default box -->
-      <div class="box">
-        <div class="box-header with-border">
-
-          <div class="box-tools pull-right">
-            <button type="button" class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip"
-                    title="Collapse">
-              <i class="fa fa-minus"></i></button>
-            <button type="button" class="btn btn-box-tool" data-widget="remove" data-toggle="tooltip" title="Remove">
-              <i class="fa fa-times"></i></button>
+<body class="dashboard dashboard_1">
+  <div class="full_container">
+    <div class="inner_container">
+      <!-- Sidebar  -->
+      <nav id="sidebar">
+        <div class="sidebar_blog_1">
+          <div class="sidebar-header">
+            <div class="logo_section">
+              <a href="<?= base_url() ?>ad/home"><img class="logo_icon img-responsive" src="<?= base_url() ?>template/images/logo/logo_icon.png" alt="#" /></a>
+            </div>
+          </div>
+          <div class="sidebar_user_info">
+            <div class="icon_setting"></div>
+            <div class="user_profle_side">
+              <div class="user_img" id="fotoTema1"><img class="img-responsive" src="<?= dirname(base_url())."/writable/".session('foto')?>" alt="#" /></div>
+              <div class="user_info">
+                <h6><?php echo session('usuario'); ?></h6>
+                <p><span class="online_animation"></span> Online</p>
+              </div>
+            </div>
           </div>
         </div>
-        <div class="box-body">
-            <?php  echo $this->renderSection('contenedor');?>
+        <div class="sidebar_blog_2">
+          <h4>Panel de Control</h4>
+          <ul class="list-unstyled components">
+            <li><a href="<?= base_url() ?>ad/doctor"><i class="fa fa-user-md orange_color"></i> <span>Doctores</span></a></li>
+            <li><a href="tables.html"><i class="fa fa-user purple_color2"></i> <span>Clientes</span></a></li>
+            <li><a href="price.html"><i class="fa fa-shopping-cart blue1_color"></i> <span>Proucto</span></a></li>
+            <li class="active">
+              <a href="#additional_page" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><i class="fa fa-clone yellow_color"></i> <span>Additional Pages</span></a>
+              <ul class="collapse list-unstyled" id="additional_page">
+                <li>
+                  <a href="profile.html">> <span>Profile</span></a>
+                </li>
+              </ul>
+            </li>
+          </ul>
         </div>
+      </nav>
+      <!-- end sidebar -->
+      <!-- right content -->
+      <div id="content">
+        <!-- topbar -->
+        <div class="topbar">
+          <nav class="navbar navbar-expand-lg navbar-light">
+            <div class="full">
+              <button type="button" id="sidebarCollapse" class="sidebar_toggle"><i class="fa fa-bars"></i></button>
+              <div class="logo_section">
+                <a href="<?= base_url() ?>ad/home"><img class="img-responsive" src="<?= base_url() ?>template/images/logo/logo.png" alt="#" /></a>
+              </div>
+              <div class="right_topbar">
+                <div class="icon_info">
+                  <ul class="user_profile_dd">
+                    <li>
+                      <a class="dropdown-toggle" id="fotoTema2" data-toggle="dropdown"><img class="img-responsive rounded-circle" src="<?= dirname(base_url())."/writable/".session('foto')?>" alt="#" /><span class="name_user"><?php echo session('usuario'); ?></span></a>
+                      <div class="dropdown-menu">
+                        <a class="dropdown-item" href="profile.html">My Profile</a>
+                        <a class="dropdown-item" href="#"><span>Log Out</span> <i class="fa fa-sign-out"></i></a>
+                      </div>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </nav>
+        </div>
+        <!-- dashboard inner -->
+        <div class="midde_cont">
+          <div class="container-fluid">
+            <div class="row column_title">
+              <div class="col-md-12">
+                <div class="page_title">
+                  <h2><?php echo $titulo; ?></h2>
+                </div>
+              </div>
+            </div>
+
+            <?php echo $this->renderSection('contenedor'); ?>
+
+          </div>
+          <!-- footer -->
+          <div class="container-fluid">
+            <div class="footer">
+              <p>Copyright © 2024 QuiroPracticos Quito. All rights reserved.<br><br>
+              </p>
+            </div>
+          </div>
+        </div>
+        <!-- end dashboard inner -->
       </div>
-      <!-- /.box -->
-
-    </section>
-    <!-- /.content -->
+    </div>
   </div>
-  <!-- /.content-wrapper -->
 
-  <footer class="main-footer">
-   
-  </footer>
+  <!-- jQuery -->
+  <script src="<?= base_url() ?>template/js/jquery.min.js"></script>
+  <script src="<?= base_url() ?>template/js/popper.min.js"></script>
+  <script src="<?= base_url() ?>template/js/bootstrap.min.js"></script>
+  <!-- wow animation -->
+  <script src="<?= base_url() ?>template/js/animate.js"></script>
+  <!-- select country -->
+  <script src="<?= base_url() ?>template/js/bootstrap-select.js"></script>
+  <!-- owl carousel -->
+  <script src="<?= base_url() ?>template/js/owl.carousel.js"></script>
+  <!-- chart js -->
+  <script src="<?= base_url() ?>template/js/Chart.min.js"></script>
+  <script src="<?= base_url() ?>template/js/Chart.bundle.min.js"></script>
+  <script src="<?= base_url() ?>template/js/utils.js"></script>
+  <script src="<?= base_url() ?>template/js/analyser.js"></script>
+  <!-- nice scrollbar -->
+  <script src="<?= base_url() ?>template/js/perfect-scrollbar.min.js"></script>
+  <script>
+    var ps = new PerfectScrollbar('#sidebar');
+  </script>
+  <!-- custom js -->
+  <script src="<?= base_url() ?>template/js/chart_custom_style1.js"></script>
+  <script src="<?= base_url() ?>template/js/custom.js"></script>
 
 
-  <!-- /.control-sidebar -->
-  <!-- Add the sidebar's background. This div must be placed
-       immediately after the control sidebar -->
-  <div class="control-sidebar-bg"></div>
-</div>
-<!-- ./wrapper -->
-
-<!-- jQuery 3 -->
-<script src="<?= base_url() ?>template/bower_components/jquery/dist/jquery.min.js"></script>
-<!-- Bootstrap 3.3.7 -->
-<script src="<?= base_url() ?>template/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
-<!-- SlimScroll -->
-<script src="<?= base_url() ?>template/bower_components/jquery-slimscroll/jquery.slimscroll.min.js"></script>
-<!-- FastClick -->
-<script src="<?= base_url() ?>template/bower_components/fastclick/lib/fastclick.js"></script>
-<!-- AdminLTE App -->
-<script src="<?= base_url() ?>template/dist/js/adminlte.min.js"></script>
-<!-- AdminLTE for demo purposes -->
-<script src="<?= base_url() ?>template/dist/js/demo.js"></script>
-<script>
-  $(document).ready(function () {
-    $('.sidebar-menu').tree()
-  })
-</script>
-<?php  echo $this->renderSection('scripts');?>
 </body>
+
 </html>

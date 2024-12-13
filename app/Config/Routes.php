@@ -8,5 +8,10 @@ use CodeIgniter\Router\RouteCollection;
 
 $routes->get('/login', 'LoginController::login');
 $routes->post('/logueado', 'LoginController::logueado');
-$routes->get('/home', 'HomeController::index');
+
+$routes->get('/ad/home', 'HomeController::index');
+
+$routes->get('/ad/doctor', 'DoctorController::index');
+$routes->get('/ad/doctor/new', 'DoctorController::new');
+$routes->post('/ad/doctor', 'DoctorController::create');
 
