@@ -29,10 +29,10 @@ class LoginController extends BaseController
             ->groupEnd()
             ->first();
         if ($result) {
-            if (password_verify($pass, $result['clave'])) {
+            if (password_verify($pass, $result['clave']) && $result['estado']==1) {
                 // La contraseña es válida
                 $session = session();
-                $cabecera = ['correo' => $result['correo'], 'usuario' => $result['nombre'], 'foto' => $result['foto']];
+                $cabecera = ['correo' => $result['correo'], 'usuario' => $result['nombre'], 'foto' => $result['foto'], 'cedula' => $result['cedula']];
                 $session->set($cabecera);
                 return redirect()->to(base_url('/ad/home'));
             } else {

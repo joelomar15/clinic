@@ -25,7 +25,7 @@ class DoctorController extends BaseController
         $result = $this->doctorModel
             ->findAll();
         $cabecera = ['titulo' => 'Nomina de Doctores', 'tipo' => 'Tabla', 'doctores' => $result];
-        return view('Admin/Tablas/doctor', $cabecera);
+        return view('Admin/Tablas/Doctor', $cabecera);
     }
 
     /**
@@ -48,7 +48,7 @@ class DoctorController extends BaseController
     public function new()
     {
         $cabecera = ['titulo' => 'Registrar Doctor', 'tipo' => 'Form'];
-        return view('Admin/Form/DoctorNew.php', $cabecera);
+        return view('Admin/Form/DoctorNew', $cabecera);
     }
 
     /**
@@ -60,7 +60,7 @@ class DoctorController extends BaseController
     {
         //
         $cabecera = ['titulo' => 'Registrar Empleado', 'tipo' => 'Form'];
-        return view('Modal/modalEmpleado.php', $cabecera);
+        return view('Modal/modalEmpleado', $cabecera);
     }
 
     /**
@@ -146,12 +146,12 @@ class DoctorController extends BaseController
             'correo' => $email,
             'telefono' => $telefono,
             'estado' => $estado,
-            'clave' => password_hash($cedula,PASSWORD_DEFAULT),
+            'clave' => password_hash($cedula, PASSWORD_DEFAULT),
             'foto' => 'uploads/fotoUser/FOTO-' . $cedula . '.' . $extension
         );
 
         $this->doctorModel->insert($data, false);
-        return redirect()->to(base_url('/ad/doctor'));
+        return redirect()->to(base_url('ad/doctor'));
     }
 
     /**
@@ -163,8 +163,8 @@ class DoctorController extends BaseController
     {
         //
         $result = $this->doctorModel->find($id);
-        $cabecera = ['titulo' => 'Actualizar Empleados', 'tipo' => 'Form', 'empleado' => $result];
-        return view('Form/EmpleadoEdit', $cabecera);
+        $cabecera = ['titulo' => 'Actualizar Doctor', 'tipo' => 'Form', 'doctor' => $result];
+        return view('Admin/Form/DoctorEdit', $cabecera);
     }
 
     /**
@@ -179,14 +179,7 @@ class DoctorController extends BaseController
         $reglas =
             [
                 'nombre' => [
-                    'label' => 'Usuario',
-                    'rules' => 'required',
-                    'errors' => [
-                        'required' => 'El campo {field} es obligatorio.'
-                    ],
-                ],
-                'apellido' => [
-                    'label' => 'Apellidop',
+                    'label' => 'Nombre',
                     'rules' => 'required',
                     'errors' => [
                         'required' => 'El campo {field} es obligatorio.'
@@ -194,11 +187,11 @@ class DoctorController extends BaseController
                 ],
                 'cedula' => [
                     'label' => 'Cédula',
-                    'rules' => 'required|greater_than[0]|is_unique[empleados.cedula,idEmpleado,' . $id . ']',
+                    'rules' => 'required|greater_than[0]|is_unique[doctores.cedula,id,' . $id . ']',
                     'errors' => [
                         'required' => 'El campo {field} es obligatorio.',
                         'greater_than' => 'El campo {field} debe contener solo números',
-                        'is_unique' => 'La cédula del Empleado ya existe...'
+                        'is_unique' => 'La cédula del Doctor ya existe...'
                     ],
                 ],
                 'direccion' => [
@@ -215,44 +208,20 @@ class DoctorController extends BaseController
                         'required' => 'El campo {field} es obligatorio.'
                     ],
                 ],
-                'edad' => [
-                    'label' => 'Edad',
+                'telefono' => [
+                    'label' => 'Teléfono',
                     'rules' => 'required|greater_than[0]',
                     'errors' => [
                         'required' => 'El campo {field} es obligatorio.',
                         'greater_than' => 'El campo {field} debe contener un número mayor a 0'
                     ],
                 ],
-                'fechaNaci' => [
-                    'label' => 'F. Nacimiento',
-                    'rules' => 'required',
+                'foto' => [
+                    'label' => 'Fotografía',
+                    'rules' => 'mime_in[foto,image/png,image/jpeg,image/jpg]|max_size[foto,10000]',
                     'errors' => [
-                        'required' => 'El campo {field} es obligatorio.'
-                    ],
-                ],
-                'salario' => [
-                    'label' => 'Salario',
-                    'rules' => 'required|greater_than[0]',
-                    'errors' => [
-                        'required' => 'El campo {field} es obligatorio.',
-                        'greater_than' => 'El campo {field} debe contener un número mayor a 0'
-                    ],
-                ],
-                'cv' => [
-                    'label' => 'Curriculo Vitae',
-                    'rules' => 'mime_in[cv,application/pdf]|max_size[cv,10000]',
-                    'errors' => [
-                        'mime_in' => 'Por favor, carga un archivo en formato PDF',
-                        'max_size' => 'El tamaño maximo del archivo debe de ser 50 MB'
-                    ]
-                ],
-                'areas' => [
-                    'label' => 'Área',
-                    'rules' => 'required|greater_than[0]|is_not_unique[areas.idArea]',
-                    'errors' => [
-                        'required' => 'El campo {field} es obligatorio.',
-                        'greater_than' => 'El campo {field} debe contener un valor mayor a 0.',
-                        'is_not_unique' => 'El id no exixte.'
+                        'mime_in' => 'Por favor, carga un archivo en formato jpeg, jpg, png',
+                        'max_size' => 'El archivo no debe exceder los 10 MB'
                     ]
                 ]
             ];
@@ -262,41 +231,43 @@ class DoctorController extends BaseController
         }
 
         $nombre = $this->request->getPost('nombre');
-        $apellido = $this->request->getPost('apellido');
         $cedula = $this->request->getPost('cedula');
         $direccion = $this->request->getPost('direccion');
         $email = $this->request->getPost('email');
-        $edad = $this->request->getPost('edad');
-        $fechaNaci = $this->request->getPost('fechaNaci');
-        $salario = $this->request->getPost('salario');
-        $estado = $this->request->getPost('estado');
-        $area = $this->request->getPost('areas');
-        if ($estado != 1) {
-            $estado = 0;
-        }
+        $telefono = $this->request->getPost('telefono');
 
+        if ($cedula == session('cedula')) {
+            session()->set('usuario', $nombre);
+        }
 
         $data = array(
             'nombre' => $nombre,
-            'apellido' => $apellido,
             'cedula' => $cedula,
             'direccion' => $direccion,
-            'edad' => $edad,
-            'fechaNaci' => $fechaNaci,
-            'salario' => $salario,
-            'estado' => $estado,
-            'idArea' => $area,
-            'email' => $email
+            'correo' => $email,
+            'telefono' => $telefono,
         );
 
-        $mi_archivo = $this->request->getFile('cv');
+        $mi_archivo = $this->request->getFile(fileID: 'foto');
         if ($mi_archivo->isValid()) {
-            $mi_archivo->move(WRITEPATH . 'uploads/CVEmpleados/', 'CV-' . $cedula . '.pdf', true);
-            $data['cv'] = 'uploads/CVEmpleados/CV-' . $cedula . '.pdf';
-        }
+            $uploadPath = WRITEPATH . 'uploads/fotoUser/';
+            $fileNamePattern = $uploadPath . 'FOTO-' . $cedula . '.*'; // Busca cualquier extensión
 
+            // Eliminar cualquier archivo que coincida con el patrón
+            foreach (glob($fileNamePattern) as $oldFile) {
+                unlink($oldFile); // Eliminar archivo
+            }
+
+            $extension = $mi_archivo->getExtension();
+            $mi_archivo->move(WRITEPATH . 'uploads/fotoUser/', 'FOTO-' . $cedula . '.' . $extension, true);
+            $data['foto'] = 'uploads/fotoUser/FOTO-' . $cedula . '.' . $extension;
+            if ($cedula == session('cedula')) {
+                session()->set('foto', $data['foto']);
+                session()->set('usuario', $data['nombre']);
+            }
+        }
         $this->doctorModel->update($id, $data);
-        return redirect()->to(base_url('/empleados'));
+        return redirect()->to(base_url('ad/doctor'));
     }
 
     /**
@@ -306,11 +277,13 @@ class DoctorController extends BaseController
      */
     public function delete($id = null)
     {
-        //
-        $data = array(
-            'estado' => 0
-        );
-        $this->doctorModel->update($id, $data);
-        return redirect()->to(base_url('/empleados'));
+        $doctor = $this->doctorModel->find($id);
+
+        if ($doctor) {
+            $nuevoEstado = ($doctor['estado'] == 0) ? 1 : 0;
+            $data = ['estado' => $nuevoEstado];
+            $this->doctorModel->update($id, $data);
+        }
+        return redirect()->to(base_url('ad/doctor'));
     }
 }

@@ -34,6 +34,8 @@ class Filters extends BaseFilters
         'forcehttps'    => ForceHTTPS::class,
         'pagecache'     => PageCache::class,
         'performance'   => PerformanceMetrics::class,
+        'sessionLogin' => \App\Filters\sessionLogin::class,
+        'sessionActiva' => \App\Filters\sessionActiva::class
     ];
 
     /**
@@ -103,5 +105,19 @@ class Filters extends BaseFilters
      *
      * @var array<string, array<string, list<string>>>
      */
-    public array $filters = [];
+    public array $filters = [
+        "sessionLogin" => [
+            "before" => [
+                "ad/home"
+            ]
+
+        ],
+        "sessionActiva" => [
+            "before" => [
+                "/login",
+                "/registrar"
+            ]
+
+        ]
+    ];
 }

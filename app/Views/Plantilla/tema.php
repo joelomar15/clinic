@@ -29,12 +29,14 @@
   <link rel="stylesheet" href="<?= base_url() ?>template/css/perfect-scrollbar.css" />
   <!-- custom css -->
   <link rel="stylesheet" href="<?= base_url() ?>template/css/custom.css" />
+
   <!--[if lt IE 9]>
       <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
       <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
       <![endif]-->
-
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
 </head>
+
 <body class="dashboard dashboard_1">
   <div class="full_container">
     <div class="inner_container">
@@ -43,13 +45,13 @@
         <div class="sidebar_blog_1">
           <div class="sidebar-header">
             <div class="logo_section">
-              <a href="<?= base_url() ?>ad/home"><img class="logo_icon img-responsive" src="<?= base_url() ?>template/images/logo/logo_icon.png" alt="#" /></a>
+              <a href="<?= base_url() ?>ad/home"><img class="logo_icon img-responsive" src="<?= dirname(base_url()) . "/writable/" . session('foto') ?>" alt="#" /></a>
             </div>
           </div>
           <div class="sidebar_user_info">
             <div class="icon_setting"></div>
             <div class="user_profle_side">
-              <div class="user_img" id="fotoTema1"><img class="img-responsive" src="<?= dirname(base_url())."/writable/".session('foto')?>" alt="#" /></div>
+              <div class="user_img" id="fotoTema1"><img class="img-responsive" src="<?= dirname(base_url()) . "/writable/" . session('foto') ?>" alt="#" /></div>
               <div class="user_info">
                 <h6><?php echo session('usuario'); ?></h6>
                 <p><span class="online_animation"></span> Online</p>
@@ -61,8 +63,11 @@
           <h4>Panel de Control</h4>
           <ul class="list-unstyled components">
             <li><a href="<?= base_url() ?>ad/doctor"><i class="fa fa-user-md orange_color"></i> <span>Doctores</span></a></li>
-            <li><a href="tables.html"><i class="fa fa-user purple_color2"></i> <span>Clientes</span></a></li>
-            <li><a href="price.html"><i class="fa fa-shopping-cart blue1_color"></i> <span>Proucto</span></a></li>
+            <li><a href="<?= base_url() ?>ad/cliente"><i class="fa fa-user purple_color2"></i> <span>Clientes</span></a></li>
+            <li><a href="<?= base_url() ?>ad/horario"><i class="fa fa-calendar red_color"></i> <span>Horarios</span></a></li>
+            <li><a href="<?= base_url() ?>ad/oferta"><i class="fa fa-gift green_color"></i> <span>Ofertas</span></a></li>
+            <li><a href="<?= base_url() ?>ad/producto"><i class="fa fa-shopping-cart blue1_color"></i> <span>Productos</span></a></li>
+            <li><a href="<?= base_url() ?>ad/asignar"><i class="fa fa-tasks yellow_color"></i> <span>Asignaciones</span></a></li>
             <li class="active">
               <a href="#additional_page" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><i class="fa fa-clone yellow_color"></i> <span>Additional Pages</span></a>
               <ul class="collapse list-unstyled" id="additional_page">
@@ -89,7 +94,7 @@
                 <div class="icon_info">
                   <ul class="user_profile_dd">
                     <li>
-                      <a class="dropdown-toggle" id="fotoTema2" data-toggle="dropdown"><img class="img-responsive rounded-circle" src="<?= dirname(base_url())."/writable/".session('foto')?>" alt="#" /><span class="name_user"><?php echo session('usuario'); ?></span></a>
+                      <a class="dropdown-toggle" id="fotoTema2" data-toggle="dropdown"><img class="img-responsive rounded-circle" src="<?= dirname(base_url()) . "/writable/" . session('foto') ?>" alt="#" /><span class="name_user"><?php echo session('usuario'); ?></span></a>
                       <div class="dropdown-menu">
                         <a class="dropdown-item" href="profile.html">My Profile</a>
                         <a class="dropdown-item" href="#"><span>Log Out</span> <i class="fa fa-sign-out"></i></a>
@@ -151,6 +156,9 @@
   <!-- custom js -->
   <script src="<?= base_url() ?>template/js/chart_custom_style1.js"></script>
   <script src="<?= base_url() ?>template/js/custom.js"></script>
+
+  
+  <?php  echo $this->renderSection('scripts');?>
 
 
 </body>
