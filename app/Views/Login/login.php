@@ -1,6 +1,6 @@
 <?php echo $this->extend('Plantilla/temaLog'); ?>
 <?php echo $this->section("contenedor"); ?>
-<p class="login-box-msg">Sistema Gestión </p>
+<p class="login-box-msg">Sistema Gestión QuiroPracticos </p><br>
 <?php if (isset($error)): ?>
     <div class="alert alert-danger" role="alert">
         <?php echo $error; ?>
@@ -17,9 +17,6 @@
                 <label class="label_field">Password:</label>
                 <input type="password" name="password" placeholder="Password" />
             </div>
-            <div class="field">
-                <a class="forgot" href="">Forgotten Password?</a>
-            </div>
             <div class="field margin_0">
                 <label class="label_field hidden">hidden label</label>
                 <button class="main_bt">Sing In</button>
@@ -29,6 +26,4 @@
 </form>
 
 <br>
-<a href="<?= base_url() ?>registrar" class="text-center">Registrarse aquí</a>
-
 <?php echo $this->endSection(); ?>

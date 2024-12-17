@@ -108,14 +108,13 @@ class Filters extends BaseFilters
     public array $filters = [
         "sessionLogin" => [
             "before" => [
-                "ad/home"
+                "ad/*"
             ]
 
         ],
         "sessionActiva" => [
             "before" => [
-                "/login",
-                "/registrar"
+                "/login"
             ]
 
         ]

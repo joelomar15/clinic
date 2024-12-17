@@ -62,6 +62,7 @@
         <div class="sidebar_blog_2">
           <h4>Panel de Control</h4>
           <ul class="list-unstyled components">
+            <li><a href="<?= base_url() ?>ad/home"><i class="fa fa-home blue2_color"></i> <span>Home</span></a></li>
             <li><a href="<?= base_url() ?>ad/doctor"><i class="fa fa-user-md orange_color"></i> <span>Doctores</span></a></li>
             <li><a href="<?= base_url() ?>ad/cliente"><i class="fa fa-user purple_color2"></i> <span>Clientes</span></a></li>
             <li><a href="<?= base_url() ?>ad/horario"><i class="fa fa-calendar red_color"></i> <span>Horarios</span></a></li>
@@ -96,8 +97,7 @@
                     <li>
                       <a class="dropdown-toggle" id="fotoTema2" data-toggle="dropdown"><img class="img-responsive rounded-circle" src="<?= dirname(base_url()) . "/writable/" . session('foto') ?>" alt="#" /><span class="name_user"><?php echo session('usuario'); ?></span></a>
                       <div class="dropdown-menu">
-                        <a class="dropdown-item" href="profile.html">My Profile</a>
-                        <a class="dropdown-item" href="#"><span>Log Out</span> <i class="fa fa-sign-out"></i></a>
+                        <a class="dropdown-item" href="<?= base_url() ?>salir"><span>Log Out</span> <i class="fa fa-sign-out"></i></a>
                       </div>
                     </li>
                   </ul>
@@ -157,8 +157,8 @@
   <script src="<?= base_url() ?>template/js/chart_custom_style1.js"></script>
   <script src="<?= base_url() ?>template/js/custom.js"></script>
 
-  
-  <?php  echo $this->renderSection('scripts');?>
+
+  <?php echo $this->renderSection('scripts'); ?>
 
 
 </body>

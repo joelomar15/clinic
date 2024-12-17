@@ -8,6 +8,7 @@ use CodeIgniter\Router\RouteCollection;
 
 $routes->get('/login', 'LoginController::login');
 $routes->post('/logueado', 'LoginController::logueado');
+$routes->get('/salir', 'LoginController::salir');
 
 $routes->get('/ad/home', 'HomeController::index');
 
