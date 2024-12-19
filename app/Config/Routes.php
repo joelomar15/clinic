@@ -18,6 +18,9 @@ $routes->post('/ad/doctor', 'DoctorController::create');
 $routes->get('/ad/doctor/(:num)/edit', 'DoctorController::edit/$1');
 $routes->put('/ad/doctor/(:num)', 'DoctorController::update/$1');
 $routes->get('/ad/doctor/delete/(:num)', 'DoctorController::delete/$1');
+$routes->get('/ad/doctor/resetPass/(:num)/(:num)', 'DoctorController::resetPass/$1/$2');
+$routes->get('/ad/doctor/newPass', 'DoctorController::newPass');
+$routes->post('/ad/doctor/changePass', 'DoctorController::changePass');
 
 $routes->get('/ad/cliente', 'ClienteController::index');
 $routes->get('/ad/cliente/new', 'ClienteController::new');

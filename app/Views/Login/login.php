@@ -1,11 +1,14 @@
 <?php echo $this->extend('Plantilla/temaLog'); ?>
 <?php echo $this->section("contenedor"); ?>
 <p class="login-box-msg">Sistema Gestión QuiroPracticos </p><br>
-<?php if (isset($error)): ?>
-    <div class="alert alert-danger" role="alert">
-        <?php echo $error; ?>
+
+<?php if (session()->getFlashdata('error')): ?>
+    <div class="alert alert-danger text-center" role="alert">
+        <i class="fa fa-exclamation-triangle"></i> <span><?= session()->getFlashdata('error'); ?></span>
     </div>
 <?php endif; ?>
+
+
 <form action="<?= base_url() ?>logueado" method="post">
     <form>
         <fieldset>

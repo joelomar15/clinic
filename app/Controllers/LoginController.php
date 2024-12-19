@@ -37,10 +37,10 @@ class LoginController extends BaseController
                 return redirect()->to(base_url('/ad/home'));
             } else {
                 // La contraseña es incorrecta
-                return redirect()->to(base_url('/login'))->with('error', 'Login incorrecto');
+                return redirect()->to(base_url('/login'))->with('error', 'El usuario o la contraseña ingresados no son válidos. Inténtalo nuevamente.');
             }
         } else {
-            return redirect()->to(base_url('/login'))->with('error', 'Login incorrecto');
+            return redirect()->to(base_url('/login'))->with('error', 'El usuario o la contraseña ingresados no son válidos. Inténtalo nuevamente.');
         }
     }
 

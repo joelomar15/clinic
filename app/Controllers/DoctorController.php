@@ -286,4 +286,57 @@ class DoctorController extends BaseController
         }
         return redirect()->to(base_url('ad/doctor'));
     }
+
+    public function resetPass($id = null,$cedula = null)
+    {
+
+        $data = ['clave' => password_hash($cedula, PASSWORD_DEFAULT)];
+        $this->doctorModel->update($id, $data);
+
+        return redirect()->to(base_url('ad/doctor'));
+    }
+
+    public function newPass()
+    {
+        $cabecera = ['titulo' => 'Cambiar Contraseña', 'tipo' => 'Form'];
+        return view('Admin/Form/PasswordNew', $cabecera);
+    }
+    public function changePass()
+    {
+        $reglas = [
+            'password' => [
+                'label' => 'Nueva Contraseña',
+                'rules' => 'required|min_length[8]|max_length[16]|regex_match[/(?=.*\d)(?=.*[A-Z])(?=.*[a-z])(?=.*[@$!%*?&]).{8,16}/]',
+                'errors' => [
+                    'required' => 'El campo {field} es obligatorio.',
+                    'min_length' => 'El campo {field} debe tener al menos 8 caracteres.',
+                    'max_length' => 'El campo {field} no debe exceder los 16 caracteres.',
+                    'regex_match' => 'El campo {field} debe contener al menos una letra mayúscula, una letra minúscula, un número y un carácter especial (@, $, !, %, *, ?, &).'
+                ],
+            ],
+            'password2' => [
+                'label' => 'Repetir Contraseña',
+                'rules' => 'required|matches[password]',
+                'errors' => [
+                    'required' => 'El campo {field} es obligatorio.',
+                    'matches' => 'Las contraseñas no coinciden.'
+                ],
+            ]
+        ];
+
+        if (!$this->validate($reglas)) {
+            return redirect()->back()->withInput();
+        }
+
+        $password = $this->request->getPost('password');
+        $data = [
+            'clave' => password_hash($password, PASSWORD_BCRYPT),
+        ];
+        $this->doctorModel
+            ->where('cedula', session('cedula')) 
+            ->set($data) 
+            ->update(); 
+
+        return redirect()->to(base_url('ad/home'));
+    }
 }

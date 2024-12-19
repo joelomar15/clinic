@@ -45,7 +45,7 @@
         <div class="sidebar_blog_1">
           <div class="sidebar-header">
             <div class="logo_section">
-              <a href="<?= base_url() ?>ad/home"><img class="logo_icon img-responsive" src="<?= dirname(base_url()) . "/writable/" . session('foto') ?>" alt="#" /></a>
+              <a href="<?= base_url() ?>ad/home"><img class="logo_icon img-responsive rounded-circle" src="<?= dirname(base_url()) . "/writable/" . session('foto') ?>" alt="#" /></a>
             </div>
           </div>
           <div class="sidebar_user_info">
@@ -95,9 +95,10 @@
                 <div class="icon_info">
                   <ul class="user_profile_dd">
                     <li>
-                      <a class="dropdown-toggle" id="fotoTema2" data-toggle="dropdown"><img class="img-responsive rounded-circle" src="<?= dirname(base_url()) . "/writable/" . session('foto') ?>" alt="#" /><span class="name_user"><?php echo session('usuario'); ?></span></a>
+                      <a class="dropdown-toggle" data-toggle="dropdown"><img class="img-responsive rounded-circle" src="<?= dirname(base_url()) . "/writable/" . session('foto') ?>" alt="#" /><span class="name_user"><?php echo session('usuario'); ?></span></a>
                       <div class="dropdown-menu">
-                        <a class="dropdown-item" href="<?= base_url() ?>salir"><span>Log Out</span> <i class="fa fa-sign-out"></i></a>
+                        <a class="dropdown-item" href="<?= base_url() ?>ad/doctor/newPass"><span>Cambiar Contraseña</span> <i class="fa fa-sign-out"></i></a>
+                        <a class="dropdown-item" href="<?= base_url() ?>salir"><span>Cerrar Sessión</span> <i class="fa fa-sign-out"></i></a>
                       </div>
                     </li>
                   </ul>

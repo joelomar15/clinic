@@ -87,7 +87,8 @@
 				</div>
 				<div class="text-center mt-3">
 					<button type="submit" class="btn btn-info"><i class="fa fa-edit"></i> Actualizar Registro</button>
-				</div>
+				</div><br>
+				<a href="<?= base_url() ?>ad/doctor/resetPass/<?php echo $doctor['id']; ?>/<?php echo $doctor['cedula']; ?>" onclick="return confirm('¿Seguro que desea restablecer la Contraeña?');" class="btn btn-info"><i class="fa fa-lock"></i> Resetear Contraeña</a>
 			</div>
 		</div>
 	</form>
