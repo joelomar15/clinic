@@ -6,6 +6,7 @@ use App\Models\ProductoModel;
 use App\Models\ClienteModel;
 use App\Models\OfertaModel;
 use App\Models\ReservaModel;
+use App\Models\DoctorModel;
 
 class HomeController extends BaseController
 {
@@ -13,12 +14,15 @@ class HomeController extends BaseController
     private $clienteModel;
     private $ofertaModel;
     private $reservaModel;
+    private $doctorModel;
+
     public function __construct()
     {
         $this->productoModel = new ProductoModel();
         $this->clienteModel = new ClienteModel();
         $this->ofertaModel = new OfertaModel();
         $this->reservaModel = new ReservaModel();
+        $this->doctorModel = new DoctorModel();
     }
 
     public function index(): string
@@ -60,9 +64,27 @@ class HomeController extends BaseController
             ->orderBy('reservas.fecha, reservas.hora')
             ->findAll();
 
+        $doctor = $this->doctorModel->where('cedula', session(('cedula')))->first();
+        if ($doctor) {
+            $id = $doctor['id'];
+        } else {
+            $id = null;
+        }
+
+        $result5 = $this->reservaModel->query("
+            SELECT 
+                COALESCE(SUM(CASE WHEN r.estado = 0 THEN 1 ELSE 0 END),0) AS inactivos,
+                COALESCE(SUM(CASE WHEN r.estado = 1 THEN 1 ELSE 0 END),0)  AS activos,
+                COUNT(*) AS total_reservas
+            FROM reservas r
+            INNER JOIN asignacion a ON r.id_asignacion = a.id
+            WHERE a.id_doctor = " . $id . "
+            AND DATE(r.fecha) = CURDATE()
+            ");
+        $reservaHoy = $result5->getRowArray();
 
 
-        $cabecera = ['titulo' => 'Home', 'tipo' => 'Home', 'producto' => $producto, 'cliente' => $cliente, 'oferta' => $oferta, 'reserva' => $result4];
+        $cabecera = ['titulo' => 'Home', 'tipo' => 'Home', 'producto' => $producto, 'cliente' => $cliente, 'oferta' => $oferta, 'reserva' => $result4, 'reservaHoy' => $reservaHoy];
         return view('Admin/home', $cabecera);
     }
 }

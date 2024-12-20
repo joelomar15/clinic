@@ -27,11 +27,11 @@ $fechaAnterior = '';
                 <h4 class="text-center">Tus Citas Medicas (Hoy)</h4>
                 <ul>
                     <li>
-                        <span><strong><?= $producto['activos']; ?></strong></span>
+                        <span><strong><?= $reservaHoy['activos']; ?></strong></span>
                         <span>Activos</span>
                     </li>
                     <li>
-                        <span><strong><?= $producto['inactivos']; ?></strong></span>
+                        <span><strong><?= $reservaHoy['inactivos']; ?></strong></span>
                         <span>Inactivo</span>
                     </li>
                 </ul>

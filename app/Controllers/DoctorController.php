@@ -330,7 +330,7 @@ class DoctorController extends BaseController
 
         $password = $this->request->getPost('password');
         $data = [
-            'clave' => password_hash($password, PASSWORD_BCRYPT),
+            'clave' => password_hash($password, PASSWORD_BCRYPT), 
         ];
         $this->doctorModel
             ->where('cedula', session('cedula')) 
